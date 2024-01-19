@@ -1,0 +1,908 @@
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol, li {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+    font-family: "Roboto Flex", "Playfair Display", "Noto Sans KR", sans-serif ;
+}
+body.fixed {
+	overflow-y: hidden;
+}
+#main {
+	height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+	font-size: 1em;
+}
+#main .top {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border-bottom: 1px solid #fff;
+	z-index: 1000;
+	position: relative;
+	transition: 0.2s;
+}
+#main .top.active {
+	background-color: #fff;
+}
+#main .top .top_inner {
+	max-width: 1180px;
+	height: 100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#main .top .top_inner h1 a {
+	display: block;
+	width: 115px;
+	height: 52px;
+	text-indent: -999px;
+	overflow: hidden;
+	background: url(../images/etc/main_logo.png);
+}
+#main .top.active .top_inner h1 a {
+	background: url(../images/etc/sub_logo.png);
+}
+#gnb > ul {
+	display: flex;
+	justify-content: space-between;
+	white-space: nowrap;
+}
+#gnb > ul > li > a {
+	display: block;
+	padding: 0 40px;
+	line-height: 100px;
+	color: #fff;
+	position: relative;
+} 
+#gnb > ul > li.on > a::after,
+#gnb > ul > li:hover > a::after {
+	position: absolute;
+	content: "";
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	width: 100%;
+	background-color: #00779C;
+}
+#main .top.active #gnb > ul > li > a {
+	font-weight: 500;
+	color: #000;
+}
+#main .top.active #gnb > ul > li.on > a,
+#main .top.active #gnb > ul > li:hover > a {
+	color: #00779C;
+}
+#gnb .car_menu,
+#gnb .menu {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 100px;
+	width: 100%;
+	padding: 50px 0;
+	margin: 0 auto;
+	background-color: #fff;
+	border-top: 1px solid #e1e1e1;
+}
+#gnb .menu {
+	height: 400px;
+}
+/* #gnb .menu */
+#gnb .car_menu .menu_inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	max-width: 1180px;
+	margin: 0 auto;
+}
+#gnb .car_menu .menu_inner .model_image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#gnb > ul > li > .car_menu .menu_inner ul.twoDepth {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+}
+#gnb .car_menu > .menu_inner ul.twoDepth {
+	display: flex;
+	justify-content: space-between;
+	gap: 50px;
+
+}
+#gnb .car_menu > .menu_inner ul.twoDepth > li span {
+	display: inline-block;
+	line-height: 50px;
+	font-weight: 500;
+}
+#gnb .car_menu > .menu_inner ul.threeDepth li {
+	border-bottom: 1px solid #f1f1f1;
+	transition: 0.2s;
+}
+#gnb .car_menu > .menu_inner ul.threeDepth li:hover,
+#gnb .car_menu > .menu_inner ul.threeDepth li.on {
+	border-bottom: 1px solid #00779C;
+	position: relative;
+} 
+#gnb .car_menu > .menu_inner ul.threeDepth li:hover::after,
+#gnb .car_menu > .menu_inner ul.threeDepth li.on::after {
+	position: absolute;
+	content: "";
+	top: 50%;
+	transform: translateY(-50%);
+	right: -10px;
+	width: 6px;
+	height: 10px;
+	background: url(../images/etc/arrow.png);
+}
+#gnb .car_menu > .menu_inner ul.threeDepth li a {
+	display: inline-block;
+	line-height: 50px;
+}
+#gnb .car_menu > .menu_inner ul.threeDepth li.on a,
+#gnb .car_menu > .menu_inner ul.threeDepth li:hover a {
+	color: #00779C;
+}
+/**/
+#gnb .menu .menu_inner > ul.twoDepth {
+	display: flex;
+	justify-content: space-between;
+	width: 800px;
+	margin: 0 auto;
+	z-index: 1000;
+}
+#gnb .menu .menu_inner > ul.twoDepth > li {
+	text-align: center;
+}
+#gnb .menu .menu_inner > ul.twoDepth > li > a {
+	display: inline-block;
+	line-height: 50px;
+	font-weight: 500;
+}
+#gnb .menu .menu_inner > ul.twoDepth > li.on > a, 
+#gnb .menu .menu_inner > ul.twoDepth > li:hover > a {
+	color: #00779C;
+}
+#gnb .menu .menu_inner > ul.twoDepth ul.threeDepth li a {
+	display: inline-block;
+	line-height: 50px;
+	color: #444;
+}
+#gnb .menu .menu_inner > ul.twoDepth ul.threeDepth li a:focus,
+#gnb .menu .menu_inner > ul.twoDepth ul.threeDepth li a:hover {
+	text-decoration: underline;
+}
+#mobile {
+	display: none;
+}
+/*나중에 하기*/
+
+#main .top .top_inner .lang {
+	position: relative;	
+}
+#main .top .top_inner .lang > a {
+	display: block;
+	color: #fff;
+	font-size: 0.875em;
+	padding-right: 20px;
+}
+#main .top .top_inner .lang ul {
+	display: none;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 20px;
+	z-index: 1001;
+}
+#main .top .top_inner .lang ul li > a {
+	display: block;
+	padding: 10px 30px;
+	background-color: #f5f5f5;
+	color: #000;
+	/* border-bottom: 1px solid #999; */
+	font-size: 0.875em;
+}
+#main .top.active .top_inner .lang > a {
+	color: #000;
+}
+#main .top .top_inner .lang > a::after {
+	position: absolute;
+	content: "";
+	right: 0;
+	top: 40%;
+	height: 2px;
+	border: 4px solid transparent;
+	transform: rotate(0);
+	border-top-color: #fff;
+	border-style: solid;
+	transition: 0.2s;
+}
+#main .top .top_inner .lang.active > a::after {
+	top: 0;
+	transform: rotate(180deg);
+}
+#main .top.active .top_inner .lang > a::after {
+	border-top-color: #000;
+}
+#main .top .top_inner a#tab {
+	display: none;
+}
+#main_slider {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#main_slider .main_swiper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#main_slider .swiper-slide .desc {
+	position: absolute;
+	left: 10%;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #fff;
+}
+#main_slider .swiper-slide .desc h4 {
+	font-size: 2.375em;
+	font-family: "Playfair Display";
+}
+#main_slider .swiper-slide .desc span {
+	display: inline-block;
+	padding: 2px 50px;
+	background-color: #fff;
+}
+#main_slider .swiper-slide .desc p.subtitle {
+	font-size: 1.25em;
+	padding-top: 10px;
+	font-family: "Playfair Display";
+}
+#main_slider .swiper-slide .desktop img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: relative;
+}
+#main_slider .swiper-slide .desktop img.default,
+#main_slider .swiper-slide .desktop img.over {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#main_slider .swiper-slide .desktop img.default {
+	opacity: 1;
+}
+#main_slider .swiper-slide .desktop img.over {
+	opacity: 0;
+}
+#main_slider:hover .swiper-slide .desktop img.default {
+	opacity: 0;
+}
+#main_slider:hover .swiper-slide .desktop img.over {
+	opacity: 1;
+}
+#main_slider .swiper-slide .mobile {
+	display: none;
+}
+#main_slider .swiper-slide .mobile img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: relative;
+}
+#main_slider .swiper-slide .mobile img.default,
+#main_slider .swiper-slide .mobile img.over {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#main_slider .swiper-slide .mobile img.default {
+	opacity: 1;
+}
+#main_slider .swiper-slide .mobile img.over {
+	opacity: 0;
+}
+#main_slider:hover .swiper-slide .mobile img.default {
+	opacity: 0;
+}
+#main_slider:hover .swiper-slide .mobile img.over {
+	opacity: 1;
+}
+#main_slider .autoplay-progress {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+	width: 100%;
+	height: 3px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+#main_slider .autoplay-progress svg {
+	--progress: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	stroke-width: 4px;
+	stroke: #00779C;
+	fill: none;
+	stroke-dashoffset: calc(100 * (1 - var(--progress)));
+	stroke-dasharray: 100;
+}
+@media only screen and (max-width:1180px) {
+	#main {
+		font-size: 0.9375em;
+	}
+	#main .top .top_inner {
+		padding: 0 20px;
+	}
+	#gnb > ul > li > a {
+		padding: 0 30px;
+	}
+	#gnb .car_menu .menu_inner {
+		padding: 0 20px;
+		gap: 20px;
+	}
+}
+@media only screen and (max-width:980px) {
+	#main {
+		font-size: 0.875em;
+	}
+	#gnb {
+		display: none;
+	}
+	#mobile {
+		display: none;
+		position: fixed;
+		right: 0;
+		top: 100px;
+		padding: 40px 20px;
+		width: 90vw;
+		height: 100vh;
+		background-color: #fff;
+		box-sizing: border-box;
+		word-break: keep-all;
+	}
+	#mobile > ul {
+		position: relative;
+	}
+	#mobile > ul > li {
+		width: 40%;
+		padding: 0 10px;
+		border-bottom: 1px solid #eee;
+		box-sizing: border-box;
+	}
+	#mobile > ul > li > a {
+		line-height: 60px;
+		font-weight: 500;
+		padding: 10px 0;
+		position: relative;
+	}
+	#mobile > ul > li.on > a::after,
+	#mobile > ul > li:hover > a::after {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		content: "";
+		width: 100%;
+		height: 2px;
+		background-color: #00779C;
+	}
+	#mobile > ul > li.on > a,
+	#mobile > ul > li:hover > a {
+		color: #00779C;
+	}
+	#mobile > ul > li ul.twoDepth {
+		display: none;
+		position: absolute;
+		left: 40%;
+		top: 0;
+		width: 60%;
+		height: 100%;
+		padding-left: 20px;
+
+		/* background-color: #9995; */
+	}
+	#mobile > ul > li ul.twoDepth > li {
+		text-align: left;
+		background-color: #fff;
+		text-wrap: nowrap;
+	}
+	#mobile > ul > li ul.twoDepth > li > a {
+		line-height: 40px;
+		position: relative;
+		padding-right: 30px;
+	}
+	#mobile > ul > li ul.twoDepth > li.on > a,
+	#mobile > ul > li ul.twoDepth > li:hover > a {
+		color: #00779C;
+	}
+	#mobile > ul > li ul.twoDepth > li.on > a::after,
+	#mobile > ul > li ul.twoDepth > li:hover > a::after {
+		position: absolute;
+		content: "";
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 6px;
+		height: 10px;
+		background: url(../images/etc/arrow.png);
+		transition: 0.2s;
+	} 
+	#mobile > ul > li ul.twoDepth > li.on > a::after{
+		top: 20%;
+		transform: rotate(90deg);
+	}
+	#mobile > ul > li ul.twoDepth > li ul.threeDepth {
+		display: none;
+		word-break: keep-all;
+
+		margin-right: 10px;
+	}
+	#mobile > ul > li ul.twoDepth > li ul.threeDepth li {
+		background-color: #f6f6f6;
+		border-bottom: 1px solid #eaeaea;
+		padding-left: 10px;
+	}
+	#mobile > ul > li ul.twoDepth > li ul.threeDepth li:last-child {
+		border-bottom: none;
+	}
+	#mobile > ul > li ul.twoDepth > li ul.threeDepth li a {
+		line-height: 40px;
+		/* padding-left: 10px; */
+		color: #444;
+		font-size: 0.9375em;
+	}
+	#mobile > ul > li ul.twoDepth > li ul.threeDepth li:hover a {
+		text-decoration: underline;
+	}
+	#main .top .top_inner .lang {
+		display: none;
+	}
+	#main .top .top_inner a#tab.open {
+		display: block;
+		width: 30px;
+		height: 18px;
+		text-indent: -999px;
+		overflow: hidden;
+		background: url(../images/etc/tab_white.png);
+	}
+	#main .top.active .top_inner a#tab.open {
+		background: url(../images/etc/tab.png);
+	}
+	#main .top .top_inner a#tab.close {
+		display: block;
+		width: 26px;
+		height: 26px;
+		text-indent: -999px;
+		overflow: hidden;
+		background: url(../images/etc/tab_close.png);
+	}
+	#main_slider .swiper-slide .desktop {
+		display: none;
+	}
+	#main_slider .swiper-slide .mobile {
+		display: block;
+	}
+}
+@media only screen and (max-width:560px) {
+	#main {
+		font-size: 0.875em;
+	}
+	#main .top .top_inner h1 a {
+		display: block;
+		width: 80px;
+		height: 35px;
+		text-indent: -999px;
+		overflow: hidden;
+		background: url(../images/etc/main_logo_m.png);
+	}
+	#main .top.active .top_inner h1 a {
+		background: url(../images/etc/sub_logo_m.png);
+	}
+	#main_slider .swiper-slide .desc h4 {
+		font-size: 1.375em;
+	}
+	#main_slider .swiper-slide .desc p.subtitle {
+		font-size: 1em;
+	}
+}
+
+#sub {
+	max-width: 1180px;
+	/* height: 100vh; */
+	margin: 0 auto;
+	padding-bottom: 120px;
+	font-size: 1em;
+	word-break: keep-all;
+}
+#sub .heading {
+	margin-top: 50px;
+}
+#sub h4 {
+	font-family: "Playfair Display";
+	font-size: 2.0625em;
+	padding: 10px 0;
+	display: flex;
+}
+#sub .desc {
+	display: flex;
+	flex-direction: column;
+}
+#sub .desc span {
+	/* font-size: 0.875em; */
+	line-height: 1.7;
+	word-break: break-word;
+}
+#car_configurator {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 60px 0;
+}
+#car_configurator nav.car {
+	display: block;
+	padding: 4.375em 2.5em;
+	background: #FFF;
+	box-shadow: 10px 15px 30px 0px rgba(0, 0, 0, 0.25);
+}
+#car_configurator nav.car ul {
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+#car_configurator nav.car ul li a {
+	display: block;
+	padding: 5px;
+}
+#car_configurator nav.car ul li a span {
+	font-size: 0.9375em;
+}
+#car_configurator nav.car ul li:hover a {
+	text-decoration: underline;
+	color: #555;
+}
+#car_configurator nav.car ul li.on a span {
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%, transparent 0);
+}
+
+#car_configurator nav.car ul li.on a span.three_door {
+	font-weight: 500;
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%,#d9d9d9 0);
+}
+#car_configurator nav.car ul li.on a span.five_door {
+	font-weight: 500;
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%,#5381AC 0);
+}
+#car_configurator nav.car ul li.on a span.conver {
+	font-weight: 500;
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%,#CED54B 0);
+}
+#car_configurator nav.car ul li.on a span.club {
+	font-weight: 500;
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%,#AA2D2A 0);
+}
+#car_configurator nav.car ul li.on a span.country {
+	font-weight: 500;
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%,#9CAF88 0);
+}
+#car_configurator nav.car ul li.on a span.elec {
+	font-weight: 500;
+	background: linear-gradient(180deg,hsla(0,0%,100%,0) 50%,#E1CA00 0);
+}
+
+#car_configurator .car_detail ul li {
+	display: none;
+	position: relative;
+}
+#car_configurator .car_detail ul li img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#car_configurator .car_detail ul li.active {
+	display: block;
+}
+#car_configurator .car_detail ul li h4 {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 0;
+	text-align: center;
+	display: inline-block;
+	white-space: nowrap;
+}
+#car_configurator .car_detail ul li::after {
+	position: absolute;
+	content: "";
+	left: 50%;
+	bottom: 40px;
+	transform: translateX(-50%);
+	width: 900px;
+	height: 133px;
+	background: url(../images/etc/car_image_bg.png) no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+#car_configurator .car_detail ul li img.elec {
+	background: url(../images/etc/electric_badge.png) no-repeat;
+	background-position: 80% 30%;
+}
+
+#car_configurator .car_detail ul li .title {
+	text-align: center;
+}
+#car_configurator .car_detail ul li.active {
+	display: block;
+}
+#car_configurator .car_detail ul li .information  {
+	display: none;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+#car_configurator .car_detail ul li .information p {
+	position: relative;
+	line-height: 30px;
+	white-space: nowrap;
+	font-size: 0.9375em;
+}
+#car_configurator .car_detail ul li .information p.seater::before {
+	position: absolute;
+	left: -30px;
+	top: 50%;
+	transform: translateY(-50%);
+	content: "";
+	width: 17px;
+	height: 20px;
+	background: url(../images/etc/icon_seater.png) no-repeat;
+}
+#car_configurator .car_detail ul li .information p.luggage::before {
+	position: absolute;
+	left: -30px;
+	top: 50%;
+	transform: translateY(-50%);
+	content: "";
+	width: 20px;
+	height: 18px;
+	background: url(../images/etc/icon_luggage.png) no-repeat;
+}
+#car_configurator .car_detail ul li .information p.power::before {
+	position: absolute;
+	left: -30px;
+	top: 50%;
+	transform: translateY(-50%);
+	content: "";
+	width: 21px;
+	height: 20px;
+	background: url(../images/etc/icon_power.png) no-repeat;
+}
+#car_configurator .car_detail ul li .information p.acceration::before {
+	position: absolute;
+	left: -30px;
+	top: 50%;
+	transform: translateY(-50%);
+	content: "";
+	width: 21px;
+	height: 22px;
+	background: url(../images/etc/icon_acceleration.png) no-repeat;
+}
+#car_configurator .button {
+	white-space: nowrap;
+}
+#car_configurator .button ul {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+#car_configurator .button ul li a {
+	display: block;
+	padding: 5px 30px;
+	background-color: #000;
+	color: #fff;
+	font-size: 0.8125em;
+	font-weight: 500;
+	text-align: center;
+	border: 1px solid transparent;
+	transition: 0.3s;
+	box-sizing: border-box;
+}
+#car_configurator .button ul li:hover a {
+	background-color: transparent;
+	border: 1px solid #000;
+	color: #000;
+}
+#car_configurator .button ul li a.more {
+	background-color: #00779C;
+}
+#car_configurator .button ul li:hover a.more {
+	background-color: transparent;
+	border: 1px solid #00779C;
+	color: #00779C;
+}
+@media only screen and (max-width:1180px) {
+	#sub {
+		/* overflow-x: hidden; */
+		font-size: 0.9375em;
+		padding: 0 20px;
+	}
+	#sub h4 {
+		font-size: 1.875em;
+	}
+	#car_configurator {
+		display: block;
+	}
+	#car_configurator .car_detail ul li::after {
+		left: auto;
+		bottom: auto;
+		right: 0;
+		top: 20px;
+		width: 5em;
+		height: 5em;
+		background: url(../images/etc/icon_360deg.png);
+		background-size: cover;
+		border-radius: 45px;
+		box-shadow: 2px 2px 10px #444;
+		z-index: 1;
+	}
+	#car_configurator nav.car {
+		box-shadow: none;
+		padding: 0;
+	}
+	#car_configurator nav.car ul {
+		white-space: nowrap;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 0;
+	}
+	#car_configurator nav.car ul li {
+		text-align: center;
+		border-left: 1px solid #9995;
+	}
+	#car_configurator nav.car ul li:first-child {
+		border-left: none;
+	}
+	#car_configurator nav.car ul li.on a {
+		position: relative;
+	}
+	#car_configurator nav.car ul li.on a::after {
+		position: absolute;
+		content: "";
+		left: 0;
+		bottom: 0;
+		height: 3px;
+		width: 100%;
+		background-color: transparent;
+	}	
+	#car_configurator nav.car ul li.on.three_door a::after {
+		background-color: #d9d9d9;
+	}
+	#car_configurator nav.car ul li.on.five_door a::after {
+		background-color: #5381AC;
+	}
+	#car_configurator nav.car ul li.on.conver a::after {
+		background-color: #CED54B;
+	}
+	#car_configurator nav.car ul li.on.club a::after {
+		background-color: #AA2D2A;
+	}
+	#car_configurator nav.car ul li.on.country a::after {
+		background-color: #9CAF88;
+	}
+	#car_configurator nav.car ul li.on.elec a::after {
+		background-color: #E1CA00;
+	}
+	#car_configurator nav.car ul li.on a span.three_door,
+	#car_configurator nav.car ul li.on a span.five_door,
+	#car_configurator nav.car ul li.on a span.conver,
+	#car_configurator nav.car ul li.on a span.club,
+	#car_configurator nav.car ul li.on a span.country,
+	#car_configurator nav.car ul li.on a span.elec {
+		background: none;
+	}
+	#car_configurator nav.car ul li a {
+		padding: 20px;
+	}
+	#car_configurator .car_detail ul li h4 {
+		top: auto;
+		bottom: -30px;
+		font-size: 1.875em;
+	}
+	#car_configurator .button {
+		margin-top: 50px;
+	}
+	#car_configurator .button ul {
+		width: 60%;
+		margin: 0 auto;
+	}
+
+}
+@media only screen and (max-width:980px) {
+	#car_configurator nav.car ul {
+		white-space: nowrap;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: center;
+		gap: 10px;
+	}
+	#car_configurator nav.car ul li {
+		border-left: none;
+		/* border-bottom: 1px solid #9995; */
+		width: calc((100% - 20px)/ 3);
+		background-color: #eaeaea;
+		border-radius: 10px;
+	}
+	#car_configurator nav.car ul li a {
+		display: inline-block;
+		padding: 10px;
+	}
+	#car_configurator .car_detail ul li h4 {
+		font-size: 1.3em;
+	}
+}
+
+@media only screen and (max-width:560px) {
+	#sub {
+		font-size: 0.875em;
+	}
+	#car_configurator nav.car ul li {
+		width: calc((100% - 40px) / 2);
+	}
+	#car_configurator .car_detail ul li::after {
+		left: auto;
+		bottom: auto;
+		right: 0;
+		top: 20px;
+		width: 4.375em;
+		height: 4.375em;
+		background: url(../images/etc/icon_360deg_m.png);
+		background-size: cover;
+		border-radius: 45px;
+		box-shadow: 2px 2px 10px #444;
+		z-index: 1;
+	}
+	#car_configurator .car_detail ul li h4 {
+		display: none;
+	}
+	#car_configurator .button {
+		margin-top: 20px;
+	}
+	#car_configurator nav.car ul li:hover a {
+		text-decoration: none;
+	}
+	#car_configurator .car_detail ul li img.elec {
+		background: url(../images/etc/electric_m_badge.png) no-repeat;
+		background-position: 80% 20%;
+	}
+
+}
