@@ -438,7 +438,7 @@ body.fixed {
 	#mobile > ul > li ul.twoDepth > li > a {
 		line-height: 40px;
 		position: relative;
-		padding-right: 30px;
+		padding-right: 20px;
 	}
 	#mobile > ul > li ul.twoDepth > li.on > a,
 	#mobile > ul > li ul.twoDepth > li:hover > a {
