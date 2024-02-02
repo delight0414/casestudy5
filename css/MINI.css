@@ -23,6 +23,7 @@ body {
 }
 body.fixed {
 	overflow-y: hidden;
+	position: fixed;
 }
 #main {
 	height: 100vh;
@@ -196,8 +197,107 @@ body.fixed {
 }
 #mobile {
 	display: none;
+	position: fixed;
+	right: 0;
+	top: 70px;
+	padding: 40px 20px;
+	width: 90vw;
+	height: 100vh;
+	background-color: #fff;
+	box-sizing: border-box;
+	word-break: keep-all;
 }
-/*나중에 하기*/
+#mobile > ul {
+	position: relative;
+	height: 300px;
+}
+#mobile > ul > li {
+	width: 40%;
+	padding: 0 10px;
+	border-bottom: 1px solid #eee;
+	box-sizing: border-box;
+}
+#mobile > ul > li > a {
+	line-height: 60px;
+	font-weight: 500;
+	padding: 10px 0;
+	position: relative;
+}
+#mobile > ul > li.on > a::after,
+#mobile > ul > li:hover > a::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	content: "";
+	width: 100%;
+	height: 2px;
+	background-color: #00779C;
+}
+#mobile > ul > li.on > a,
+#mobile > ul > li:hover > a {
+	color: #00779C;
+}
+#mobile > ul > li ul.twoDepth {
+	display: none;
+	position: absolute;
+	left: 40%;
+	top: 0;
+	width: 60%;
+	height: 100%;
+	padding-left: 20px;
+}
+#mobile > ul > li ul.twoDepth > li {
+	text-align: left;
+	background-color: #fff;
+	text-wrap: nowrap;
+}
+#mobile > ul > li ul.twoDepth > li > a {
+	line-height: 40px;
+	position: relative;
+	padding-right: 20px;
+}
+#mobile > ul > li ul.twoDepth > li.on > a,
+#mobile > ul > li ul.twoDepth > li:hover > a {
+	color: #00779C;
+}
+#mobile > ul > li ul.twoDepth > li.on > a::after,
+#mobile > ul > li ul.twoDepth > li:hover > a::after {
+	position: absolute;
+	content: "";
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 6px;
+	height: 10px;
+	background: url(../images/etc/arrow.png);
+	transition: 0.2s;
+} 
+#mobile > ul > li ul.twoDepth > li.on > a::after{
+	top: 20%;
+	transform: rotate(90deg);
+}
+#mobile > ul > li ul.twoDepth > li ul.threeDepth {
+	display: none;
+	word-break: keep-all;
+
+	margin-right: 10px;
+}
+#mobile > ul > li ul.twoDepth > li ul.threeDepth li {
+	background-color: #f6f6f6;
+	border-bottom: 1px solid #eaeaea;
+	padding-left: 10px;
+}
+#mobile > ul > li ul.twoDepth > li ul.threeDepth li:last-child {
+	border-bottom: none;
+}
+#mobile > ul > li ul.twoDepth > li ul.threeDepth li a {
+	line-height: 40px;
+	color: #444;
+	font-size: 0.9375em;
+}
+#mobile > ul > li ul.twoDepth > li ul.threeDepth li:hover a {
+	text-decoration: underline;
+}
 
 #main .top .top_inner .lang {
 	position: relative;	
@@ -221,7 +321,6 @@ body.fixed {
 	padding: 10px 30px;
 	background-color: #f5f5f5;
 	color: #000;
-	/* border-bottom: 1px solid #999; */
 	font-size: 0.875em;
 }
 #main .top.active .top_inner .lang > a {
@@ -357,6 +456,10 @@ body.fixed {
 	stroke-dasharray: 100;
 }
 @media only screen and (max-width:1180px) {
+
+	#main .top .top_inner {
+		height: 90px;
+	}
 	#main {
 		font-size: 0.9375em;
 	}
@@ -375,113 +478,19 @@ body.fixed {
 	#main {
 		font-size: 0.875em;
 	}
+	#main .top .top_inner {
+		height: 70px;
+	}
 	#gnb {
 		display: none;
 	}
-	#mobile {
-		display: none;
-		position: fixed;
-		right: 0;
-		top: 100px;
-		padding: 40px 20px;
-		width: 90vw;
-		height: 100vh;
-		background-color: #fff;
-		box-sizing: border-box;
-		word-break: keep-all;
+	#main .top .top_inner h1 a {
+		width: 90px;
+		height: 40px;
+		background: url(../images/etc/main_logo_m1.png);
 	}
-	#mobile > ul {
-		position: relative;
-	}
-	#mobile > ul > li {
-		width: 40%;
-		padding: 0 10px;
-		border-bottom: 1px solid #eee;
-		box-sizing: border-box;
-	}
-	#mobile > ul > li > a {
-		line-height: 60px;
-		font-weight: 500;
-		padding: 10px 0;
-		position: relative;
-	}
-	#mobile > ul > li.on > a::after,
-	#mobile > ul > li:hover > a::after {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		content: "";
-		width: 100%;
-		height: 2px;
-		background-color: #00779C;
-	}
-	#mobile > ul > li.on > a,
-	#mobile > ul > li:hover > a {
-		color: #00779C;
-	}
-	#mobile > ul > li ul.twoDepth {
-		display: none;
-		position: absolute;
-		left: 40%;
-		top: 0;
-		width: 60%;
-		height: 100%;
-		padding-left: 20px;
-
-		/* background-color: #9995; */
-	}
-	#mobile > ul > li ul.twoDepth > li {
-		text-align: left;
-		background-color: #fff;
-		text-wrap: nowrap;
-	}
-	#mobile > ul > li ul.twoDepth > li > a {
-		line-height: 40px;
-		position: relative;
-		padding-right: 20px;
-	}
-	#mobile > ul > li ul.twoDepth > li.on > a,
-	#mobile > ul > li ul.twoDepth > li:hover > a {
-		color: #00779C;
-	}
-	#mobile > ul > li ul.twoDepth > li.on > a::after,
-	#mobile > ul > li ul.twoDepth > li:hover > a::after {
-		position: absolute;
-		content: "";
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 6px;
-		height: 10px;
-		background: url(../images/etc/arrow.png);
-		transition: 0.2s;
-	} 
-	#mobile > ul > li ul.twoDepth > li.on > a::after{
-		top: 20%;
-		transform: rotate(90deg);
-	}
-	#mobile > ul > li ul.twoDepth > li ul.threeDepth {
-		display: none;
-		word-break: keep-all;
-
-		margin-right: 10px;
-	}
-	#mobile > ul > li ul.twoDepth > li ul.threeDepth li {
-		background-color: #f6f6f6;
-		border-bottom: 1px solid #eaeaea;
-		padding-left: 10px;
-	}
-	#mobile > ul > li ul.twoDepth > li ul.threeDepth li:last-child {
-		border-bottom: none;
-	}
-	#mobile > ul > li ul.twoDepth > li ul.threeDepth li a {
-		line-height: 40px;
-		/* padding-left: 10px; */
-		color: #444;
-		font-size: 0.9375em;
-	}
-	#mobile > ul > li ul.twoDepth > li ul.threeDepth li:hover a {
-		text-decoration: underline;
+	#main .top.active .top_inner h1 a {
+		background: url(../images/etc/sub_logo_m1.png);
 	}
 	#main .top .top_inner .lang {
 		display: none;
@@ -517,15 +526,12 @@ body.fixed {
 		font-size: 0.875em;
 	}
 	#main .top .top_inner h1 a {
-		display: block;
 		width: 80px;
 		height: 35px;
-		text-indent: -999px;
-		overflow: hidden;
-		background: url(../images/etc/main_logo_m.png);
+		background: url(../images/etc/main_logo_m2.png);
 	}
 	#main .top.active .top_inner h1 a {
-		background: url(../images/etc/sub_logo_m.png);
+		background: url(../images/etc/sub_logo_m2.png);
 	}
 	#main_slider .swiper-slide .desc h4 {
 		font-size: 1.375em;
@@ -904,5 +910,9 @@ body.fixed {
 		background: url(../images/etc/electric_m_badge.png) no-repeat;
 		background-position: 80% 20%;
 	}
-
+}
+@media only screen and (max-width:490px) {
+	#car_configurator .car_detail ul li::after {
+		display: none;
+	}
 }

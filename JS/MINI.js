@@ -14,139 +14,98 @@ window.addEventListener("load", function(){
         }
     });
 
-// let carIdx=0;
-// let wrapper, carImage;
-// let navList=document.querySelectorAll(".car li");
-// let detailList=document.querySelectorAll(".car_detail li");
+let carIdx=0;
+let wrapper, carImage;
+let navList=document.querySelectorAll(".car li");
+let detailList=document.querySelectorAll(".car_detail li");
 
-// let save=[0,0,0,0,0,0]; // 과거에 돌린 정도
-// let dragged=0; // 이번에 돌린 정도
-// let sum=0; // 과거에 돌린 정도 + 이번에 돌린 정도
+let save=[0,0,0,0,0,0]; // 과거에 돌린 정도
+let dragged=0; // 이번에 돌린 정도
+let sum=0; // 과거에 돌린 정도 + 이번에 돌린 정도
 
-// const sensitivity=40; // 돌리는 속도 작을수록 가속
+const sensitivity=40; // 돌리는 속도 작을수록 가속
 
-// let clickedSrc=""; // 클릭했을 때 이미지 소스
-// let changeSrc=""; // 드래그해서 바뀐 이미지 소스
+let clickedSrc=""; // 클릭했을 때 이미지 소스
+let changeSrc=""; // 드래그해서 바뀐 이미지 소스
 
-// for(let i=0; i<navList.length; i++){
-//     navList[i].addEventListener("click", function(e){
-//         e.preventDefault();
+for(let i=0; i<navList.length; i++){
+    navList[i].addEventListener("click", function(e){
+        e.preventDefault();
 
-//         carIdx=i;
-//         // save=[0,0,0,0,0,0];
-//         dragged=0;
+        carIdx=i;
+        // save=[0,0,0,0,0,0];
+        dragged=0;
 
-//         // console.log(carIdx, save, dragged);
+        // console.log(carIdx, save, dragged);
 
-//         for(let i=0; i<navList.length; i++){
-//             if(i === carIdx){
-//                 navList[i].classList.add("on");
-//                 detailList[i].classList.add("active");
-//             }
-//             else{
-//                 navList[i].classList.remove("on");
-//                 detailList[i].classList.remove("active");
-//             }
-//         }
-//     });
-// }
+        for(let i=0; i<navList.length; i++){
+            if(i === carIdx){
+                navList[i].classList.add("on");
+                detailList[i].classList.add("active");
+            }
+            else{
+                navList[i].classList.remove("on");
+                detailList[i].classList.remove("active");
+            }
+        }
+    });
+}
 
-// for(let i=0; i<detailList.length; i++){
-//     detailList[i].addEventListener("mousedown", function(e){
-//         // console.log("mousedown");
-//         wrapper=e.currentTarget;
-//         let [h4, img, information]=wrapper.children;
+for(let i=0; i<detailList.length; i++){
+    detailList[i].addEventListener("mousedown", function(e){
+        // console.log("mousedown");
+        wrapper=e.currentTarget;
+        let [h4, img, information]=wrapper.children;
 
-//         clickedSrc=img.getAttribute("src");
-//         let x=e.clientX;
+        clickedSrc=img.getAttribute("src");
+        let x=e.clientX;
 
-//         wrapper.addEventListener("mousemove", rotate);
+        wrapper.addEventListener("mousemove", rotate);
 
-//         function rotate(e){
-//             // x는 이전 좌표, e.clientX 현재 좌표
-//             // dragged가 오른쪽으로 끌면 양수, 왼쪽으로 끌면 음수입니다.
+        function rotate(e){
+            // x는 이전 좌표, e.clientX 현재 좌표
+            // dragged가 오른쪽으로 끌면 양수, 왼쪽으로 끌면 음수입니다.
 
-//             // dragged가 양수면 이미지 경로가 커진 숫자로 대입되고, 음수면 이미지 숫자가 작은 숫자로 대입됩니다.
-//             dragged=parseInt((e.clientX-x)/sensitivity);
+            // dragged가 양수면 이미지 경로가 커진 숫자로 대입되고, 음수면 이미지 숫자가 작은 숫자로 대입됩니다.
+            dragged=parseInt((e.clientX-x)/sensitivity);
 
-//             // 각 리스트에 저장되는 sum 변수 값입니다.
-//             // console.log(save);
+            // 각 리스트에 저장되는 sum 변수 값입니다.
+            // console.log(save);
 
-//             // dragged의 변화량을 sum에 저장합니다.
-//             // save[carIdx]는 저장된 dragged 값입니다.
-//             sum=save[carIdx]+dragged;
-//             // console.log(sum);
+            // dragged의 변화량을 sum에 저장합니다.
+            // save[carIdx]는 저장된 dragged 값입니다.
+            sum=save[carIdx]+dragged;
+            // console.log(sum);
             
-//             if(dragged >= 0){ // 오른쪽으로 끌었을때 양수
-//                 sum=sum%35;
-//             }
-//             else {
-//                 if(sum < 0){
-//                     sum+=36;
-//                 }
-//             }
-//             console.log(sum);
+            if(dragged >= 0){ // 오른쪽으로 끌었을때 양수
+                sum=sum%35;
+            }
+            else {
+                if(sum < 0){
+                    sum+=36;
+                }
+            }
+            console.log(sum);
 
-//             // console.log("after : "+sum);
+            // console.log("after : "+sum);
 
-//             changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);
+            changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);
 
-//             console.log(changeSrc);
+            console.log(changeSrc);
 
-//             img.setAttribute("src", changeSrc);
-//             // wrapper.cursor.style = "grabbing";
-//         }
+            img.setAttribute("src", changeSrc);
+            // wrapper.cursor.style = "grabbing";
+        }
 
-//         window.addEventListener("mouseup", function(){
-//             wrapper.removeEventListener("mousemove", rotate);
-//             save[carIdx]=sum;
-//             dragged=0;
-//             // console.log(save);
-//         });
-//     });
-// };
+        window.addEventListener("mouseup", function(){
+            wrapper.removeEventListener("mousemove", rotate);
+            save[carIdx]=sum;
+            dragged=0;
+            // console.log(save);
+        });
+    });
+};
 
-// for(let i=0; i<detailList.length; i++){
-//     detailList[i].addEventListener("touchstart", function(e){
-//         // console.log("mousedown");
-//         wrapper=e.currentTarget;
-//         let [h4, img, information]=wrapper.children;
-
-//         clickedSrc=img.getAttribute("src");
-//         let x=e.clientX;
-
-//         wrapper.addEventListener("touchmove", rotate);
-
-//         function rotate(e){
-
-//             dragged=parseInt((e.clientX-x)/sensitivity);
-
-//             sum=save[carIdx]+dragged;
-            
-//             if(dragged >= 0){ // 오른쪽으로 끌었을때 양수
-//                 sum=sum%35;
-//             }
-//             else {
-//                 if(sum < 0){
-//                     sum+=36;
-//                 }
-//             }
-//             console.log(sum);
-
-//             changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);
-
-//             console.log(changeSrc);
-
-//             img.setAttribute("src", changeSrc);
-//         }
-
-//         window.addEventListener("touchend", function(){
-//             wrapper.removeEventListener("mousemove", rotate);
-//             save[carIdx]=sum;
-//             dragged=0;
-//         });
-//     });
-// };
 
 $(function(){
     let navIdx=0;
@@ -337,9 +296,9 @@ $(function(){
                 $("#mobile ul.twoDepth ul.threeDepth").slideUp();
                 $("body").removeClass("fixed");
             }
-    
         });
-    
+
+
     //mobile menu
     let mobileN;
     $("#mobile > ul > li > a").click(function(e){
@@ -356,7 +315,6 @@ $(function(){
             for(let i=0; i<$("#mobile > ul > li").length; i++){
                 if(i === mobileN){
                     let depth2=$(this).next();
-    
                     if(depth2.is(":visible") === false){
                         depth2.show();
                     }
@@ -383,7 +341,7 @@ $(function(){
     $("#mobile .twoDepth li").click(function(e){
         // console.log("2depth");
         e.preventDefault();
-        $("#mobile .twoDepth li").removeClass("on");
+        //$("#mobile .twoDepth li").removeClass("on");
         $(this).addClass("on");
         if($(this).find(".threeDepth").is(":visible") === false){
             $("#mobile .threeDepth").slideUp(300);
@@ -393,7 +351,7 @@ $(function(){
         }
         else{
             $(this).find(".threeDepth").slideUp(300);
-            $("#mobile .twoDepth li").removeClass("on");
+            $(this).removeClass("on");
         }
     });
     
