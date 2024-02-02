@@ -287,7 +287,7 @@ $(function(){
             }
             else {
                 topFlag=false;
-                $("#main .top").addClass("active");
+                $("#main .top").removeClass("active");
                 $("#mobile").slideUp(200);
                 $(this).removeAttr("class");
                 $(this).addClass("open"); 
