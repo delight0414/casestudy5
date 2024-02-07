@@ -19,24 +19,21 @@ let wrapper, carImage;
 let navList=document.querySelectorAll(".car li");
 let detailList=document.querySelectorAll(".car_detail li");
 
-let save=[0,0,0,0,0,0]; // 과거에 돌린 정도
-let dragged=0; // 이번에 돌린 정도
-let sum=0; // 과거에 돌린 정도 + 이번에 돌린 정도
+let save=[0,0,0,0,0,0];
+let dragged=0; 
+let sum=0; 
 
-const sensitivity=40; // 돌리는 속도 작을수록 가속
+const sensitivity=20; 
 
-let clickedSrc=""; // 클릭했을 때 이미지 소스
-let changeSrc=""; // 드래그해서 바뀐 이미지 소스
+let clickedSrc=""; 
+let changeSrc=""; 
 
 for(let i=0; i<navList.length; i++){
     navList[i].addEventListener("click", function(e){
         e.preventDefault();
 
         carIdx=i;
-        // save=[0,0,0,0,0,0];
         dragged=0;
-
-        // console.log(carIdx, save, dragged);
 
         for(let i=0; i<navList.length; i++){
             if(i === carIdx){
@@ -54,7 +51,7 @@ for(let i=0; i<navList.length; i++){
     if(isMobile){
         for(let i=0; i<detailList.length; i++){
             detailList[i].addEventListener("touchstart", function(e){
-                // console.log("touchstart");
+
                 wrapper=e.currentTarget;
     
                 let [h4, img, information]=wrapper.children;
@@ -68,21 +65,11 @@ for(let i=0; i<navList.length; i++){
                 function rotate(e){
                     e.preventDefault();
     
-                    // x는 이전 좌표, e.touches[0].clientX 현재 좌표
-                    // dragged가 오른쪽으로 끌면 양수, 왼쪽으로 끌면 음수입니다.
-    
-                    // dragged가 양수면 이미지 경로가 커진 숫자로 대입되고, 음수면 이미지 숫자가 작은 숫자로 대입됩니다.
                     dragged=parseInt((e.touches[0].clientX-x)/sensitivity);
     
-                    // 각 리스트에 저장되는 sum 변수 값입니다.
-                    // console.log(save);
-    
-                    // dragged의 변화량을 sum에 저장합니다.
-                    // save[carIdx]는 저장된 dragged 값입니다.
                     sum=save[carIdx]+dragged;
-                    // console.log(sum);
-                    
-                    if(dragged >= 0){ // 오른쪽으로 끌었을때 양수
+
+                    if(dragged >= 0){ 
                         sum=sum%35;
                     }
                     else {
@@ -91,8 +78,6 @@ for(let i=0; i<navList.length; i++){
                         }
                     }
                     console.log(sum);
-    
-                    // console.log("after : "+sum);
     
                     changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);
     
@@ -105,8 +90,6 @@ for(let i=0; i<navList.length; i++){
                     wrapper.removeEventListener("touchmove", rotate);
                     save[carIdx]=sum;
                     dragged=0;
-    
-                    // console.log(save);
                 });
             });
         }
@@ -140,7 +123,6 @@ for(let i=0; i<navList.length; i++){
                     console.log(changeSrc);
 
                     img.setAttribute("src", changeSrc);
-                    // wrapper.cursor.style = "grabbing";
             }
 
             window.addEventListener("mouseup", function(){
