@@ -51,60 +51,106 @@ for(let i=0; i<navList.length; i++){
     });
 }
 
-for(let i=0; i<detailList.length; i++){
-    detailList[i].addEventListener("mousedown", function(e){
-        // console.log("mousedown");
-        wrapper=e.currentTarget;
-        let [h4, img, information]=wrapper.children;
-
-        clickedSrc=img.getAttribute("src");
-        let x=e.clientX;
-
-        wrapper.addEventListener("mousemove", rotate);
-
-        function rotate(e){
-            // x는 이전 좌표, e.clientX 현재 좌표
-            // dragged가 오른쪽으로 끌면 양수, 왼쪽으로 끌면 음수입니다.
-
-            // dragged가 양수면 이미지 경로가 커진 숫자로 대입되고, 음수면 이미지 숫자가 작은 숫자로 대입됩니다.
-            dragged=parseInt((e.clientX-x)/sensitivity);
-
-            // 각 리스트에 저장되는 sum 변수 값입니다.
-            // console.log(save);
-
-            // dragged의 변화량을 sum에 저장합니다.
-            // save[carIdx]는 저장된 dragged 값입니다.
-            sum=save[carIdx]+dragged;
-            // console.log(sum);
-            
-            if(dragged >= 0){ // 오른쪽으로 끌었을때 양수
-                sum=sum%35;
-            }
-            else {
-                if(sum < 0){
-                    sum+=36;
+    if(isMobile){
+        for(let i=0; i<detailList.length; i++){
+            detailList[i].addEventListener("touchstart", function(e){
+                // console.log("touchstart");
+                wrapper=e.currentTarget;
+    
+                let [h4, img, information]=wrapper.children;
+    
+                clickedSrc=img.getAttribute("src");
+    
+                let x=e.touches[0].clientX;
+    
+                wrapper.addEventListener("touchmove", rotate);
+    
+                function rotate(e){
+                    e.preventDefault();
+    
+                    // x는 이전 좌표, e.touches[0].clientX 현재 좌표
+                    // dragged가 오른쪽으로 끌면 양수, 왼쪽으로 끌면 음수입니다.
+    
+                    // dragged가 양수면 이미지 경로가 커진 숫자로 대입되고, 음수면 이미지 숫자가 작은 숫자로 대입됩니다.
+                    dragged=parseInt((e.touches[0].clientX-x)/sensitivity);
+    
+                    // 각 리스트에 저장되는 sum 변수 값입니다.
+                    // console.log(save);
+    
+                    // dragged의 변화량을 sum에 저장합니다.
+                    // save[carIdx]는 저장된 dragged 값입니다.
+                    sum=save[carIdx]+dragged;
+                    // console.log(sum);
+                    
+                    if(dragged >= 0){ // 오른쪽으로 끌었을때 양수
+                        sum=sum%35;
+                    }
+                    else {
+                        if(sum < 0){
+                            sum+=36;
+                        }
+                    }
+                    console.log(sum);
+    
+                    // console.log("after : "+sum);
+    
+                    changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);
+    
+                    console.log(changeSrc);
+    
+                    img.setAttribute("src", changeSrc);
                 }
-            }
-            console.log(sum);
-
-            // console.log("after : "+sum);
-
-            changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);
-
-            console.log(changeSrc);
-
-            img.setAttribute("src", changeSrc);
-            // wrapper.cursor.style = "grabbing";
+    
+                window.addEventListener("touchend", function(){
+                    wrapper.removeEventListener("touchmove", rotate);
+                    save[carIdx]=sum;
+                    dragged=0;
+    
+                    // console.log(save);
+                });
+            });
         }
+    }
+    else {
+        for(let i=0; i<detailList.length; i++){
+            detailList[i].addEventListener("mousedown", function(e){
+                wrapper=e.currentTarget;
+                let [h4, img, information]=wrapper.children;
 
-        window.addEventListener("mouseup", function(){
-            wrapper.removeEventListener("mousemove", rotate);
-            save[carIdx]=sum;
-            dragged=0;
-            // console.log(save);
+                clickedSrc=img.getAttribute("src");
+                let x=e.clientX;
+
+                wrapper.addEventListener("mousemove", rotate);
+
+                function rotate(e){
+
+                    dragged=parseInt((e.clientX-x)/sensitivity);
+
+                    sum=save[carIdx]+dragged;
+                    
+                    if(dragged >= 0){
+                        sum=sum%35;
+                    }
+                    else {
+                        if(sum < 0){
+                            sum+=36;
+                        }
+                    }
+                    changeSrc=clickedSrc.replace(/car_[0-9]+/, "car_"+sum);;
+                    console.log(changeSrc);
+
+                    img.setAttribute("src", changeSrc);
+                    // wrapper.cursor.style = "grabbing";
+            }
+
+            window.addEventListener("mouseup", function(){
+                wrapper.removeEventListener("mousemove", rotate);
+                save[carIdx]=sum;
+                dragged=0;
+            });
         });
-    });
-};
+    };
+}
 
 
 $(function(){
@@ -121,8 +167,6 @@ $(function(){
         if(topFlag === false) {
             $("#main .top").removeClass("active");
         }
-    
-    
     });
         $("#gnb > ul > li").hover(function(){
             navIdx=$(this).index();
@@ -155,7 +199,7 @@ $(function(){
                     $(this).addClass("on");   
                 }
     });
-    $("#gnb .menu .menu_inner > ul.twoDepth > li > a ").focusin(function(){
+    $("#gnb .menu .menu_inner > ul.twoDepth > li > a").focusin(function(){
         $(this).parent().addClass("on");
     });
     $("#gnb li:first-child ul.twoDepth li ul.threeDepth li").focusin(function(e){
@@ -204,7 +248,6 @@ $(function(){
         $(".menu").hide();
         $("#gnb > ul > li").removeClass("on");
     });
-    
     
         // car_menu
     $("#gnb .car_menu > .menu_inner li:first-child ul.threeDepth li:first-child").addClass("on");
@@ -270,7 +313,6 @@ $(function(){
             $(this).parent().removeClass("active"); 
         });
     
-    
     // mobile menu
     let topFlag=false;
     $("a#tab").addClass("open");  
@@ -298,8 +340,6 @@ $(function(){
             }
         });
 
-
-    //mobile menu
     let mobileN;
     $("#mobile > ul > li > a").click(function(e){
         // console.log("1depth");

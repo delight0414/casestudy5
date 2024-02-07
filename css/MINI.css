@@ -25,6 +25,7 @@ body.fixed {
 	overflow-y: hidden;
 	position: fixed;
 }
+
 #main {
 	height: 100vh;
 	position: relative;
@@ -866,7 +867,6 @@ body.fixed {
 	}
 	#car_configurator nav.car ul li {
 		border-left: none;
-		/* border-bottom: 1px solid #9995; */
 		width: calc((100% - 20px)/ 3);
 		background-color: #eaeaea;
 		border-radius: 10px;
@@ -912,10 +912,5 @@ body.fixed {
 	#car_configurator .car_detail ul li img.elec {
 		background: url(../images/etc/electric_m_badge.png) no-repeat;
 		background-position: 80% 20%;
-	}
-}
-@media only screen and (max-width:490px) {
-	#car_configurator .car_detail ul li::after {
-		display: none;
 	}
 }
