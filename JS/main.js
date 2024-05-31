@@ -14,120 +14,6 @@ window.addEventListener("load", function () {
     }
   });
 
-  let carIdx = 0;
-  let wrapper, carImage;
-  let navList = $(".car li");
-  let detailList = $(".car_detail li");
-
-  let save = [0, 0, 0, 0, 0, 0];
-  let dragged = 0;
-  let sum = 0;
-
-  const sensitivity = 20;
-
-  let clickedSrc = "";
-  let changeSrc = "";
-
-  navList.each(function (index) {
-    $(this).on("click", function (e) {
-      e.preventDefault();
-
-      carIdx = index;
-      dragged = 0;
-
-      navList.each(function (i) {
-        if (i === carIdx) {
-          $(this).addClass("on");
-          detailList.eq(i).addClass("active");
-        } else {
-          $(this).removeClass("on");
-          detailList.eq(i).removeClass("active");
-        }
-      });
-    });
-  });
-
-  if (isMobile) {
-    detailList.each(function (index) {
-      $(this).on("touchstart", function (e) {
-        wrapper = $(this);
-
-        let [h4, img, information] = wrapper.children().toArray();
-        img = $(img);
-
-        clickedSrc = img.attr("src");
-
-        let x = e.originalEvent.touches[0].clientX;
-
-        wrapper.on("touchmove", rotate);
-
-        function rotate(e) {
-          e.preventDefault();
-
-          dragged = parseInt((e.originalEvent.touches[0].clientX - x) / sensitivity);
-
-          sum = save[carIdx] + dragged;
-
-          if (dragged >= 0) {
-            sum = sum % 35;
-          } else {
-            if (sum < 0) {
-              sum += 36;
-            }
-          }
-
-          changeSrc = clickedSrc.replace(/car_[0-9]+/, "car_" + sum);
-
-          img.attr("src", changeSrc);
-        }
-
-        $(window).on("touchend", function () {
-          wrapper.off("touchmove", rotate);
-          save[carIdx] = sum;
-          dragged = 0;
-        });
-      });
-    });
-  } else {
-    detailList.each(function (index) {
-      $(this).on("mousedown", function (e) {
-        wrapper = $(this);
-
-        let [h4, img, information] = wrapper.children().toArray();
-        img = $(img);
-
-        clickedSrc = img.attr("src");
-        let x = e.clientX;
-
-        wrapper.on("mousemove", rotate);
-
-        function rotate(e) {
-          dragged = parseInt((e.clientX - x) / sensitivity);
-
-          sum = save[carIdx] + dragged;
-
-          if (dragged >= 0) {
-            sum = sum % 35;
-          } else {
-            if (sum < 0) {
-              sum += 36;
-            }
-          }
-          changeSrc = clickedSrc.replace(/car_[0-9]+/, "car_" + sum);
-
-          img.attr("src", changeSrc);
-        }
-
-        $(window).on("mouseup", function () {
-          wrapper.off("mousemove", rotate);
-          save[carIdx] = sum;
-          dragged = 0;
-        });
-      });
-    });
-  }
-
-
   $(function () {
     let navIdx = 0;
     let menu = 0;
@@ -397,4 +283,116 @@ window.addEventListener("load", function () {
       $("#car_configurator .car_detail ul li").eq(carNameIdx).addClass("active");
     });
   });
+  let carIdx = 0;
+  let wrapper, carImage;
+  let navList = $(".car li");
+  let detailList = $(".car_detail li");
+
+  let save = [0, 0, 0, 0, 0, 0];
+  let dragged = 0;
+  let sum = 0;
+
+  const sensitivity = 20;
+
+  let clickedSrc = "";
+  let changeSrc = "";
+
+  navList.each(function (index) {
+    $(this).on("click", function (e) {
+      e.preventDefault();
+
+      carIdx = index;
+      dragged = 0;
+
+      navList.each(function (i) {
+        if (i === carIdx) {
+          $(this).addClass("on");
+          detailList.eq(i).addClass("active");
+        } else {
+          $(this).removeClass("on");
+          detailList.eq(i).removeClass("active");
+        }
+      });
+    });
+  });
+
+  if (isMobile) {
+    detailList.each(function (index) {
+      $(this).on("touchstart", function (e) {
+        wrapper = $(this);
+
+        let [h4, img, information] = wrapper.children().toArray();
+        img = $(img);
+
+        clickedSrc = img.attr("src");
+
+        let x = e.originalEvent.touches[0].clientX;
+
+        wrapper.on("touchmove", rotate);
+
+        function rotate(e) {
+          e.preventDefault();
+
+          dragged = parseInt((e.originalEvent.touches[0].clientX - x) / sensitivity);
+
+          sum = save[carIdx] + dragged;
+
+          if (dragged >= 0) {
+            sum = sum % 35;
+          } else {
+            if (sum < 0) {
+              sum += 36;
+            }
+          }
+
+          changeSrc = clickedSrc.replace(/car_[0-9]+/, "car_" + sum);
+
+          img.attr("src", changeSrc);
+        }
+
+        $(window).on("touchend", function () {
+          wrapper.off("touchmove", rotate);
+          save[carIdx] = sum;
+          dragged = 0;
+        });
+      });
+    });
+  } else {
+    detailList.each(function (index) {
+      $(this).on("mousedown", function (e) {
+        wrapper = $(this);
+
+        let [h4, img, information] = wrapper.children().toArray();
+        img = $(img);
+
+        clickedSrc = img.attr("src");
+        let x = e.clientX;
+
+        wrapper.on("mousemove", rotate);
+
+        function rotate(e) {
+          dragged = parseInt((e.clientX - x) / sensitivity);
+
+          sum = save[carIdx] + dragged;
+
+          if (dragged >= 0) {
+            sum = sum % 35;
+          } else {
+            if (sum < 0) {
+              sum += 36;
+            }
+          }
+          changeSrc = clickedSrc.replace(/car_[0-9]+/, "car_" + sum);
+
+          img.attr("src", changeSrc);
+        }
+
+        $(window).on("mouseup", function () {
+          wrapper.off("mousemove", rotate);
+          save[carIdx] = sum;
+          dragged = 0;
+        });
+      });
+    });
+  }
 });
